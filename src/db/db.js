@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Lesson = require('../models/lesson')
 const mongoose = require('mongoose')
 
 class DB{
@@ -21,6 +22,20 @@ class DB{
   findUser(email){
     return User.findOne({'email': email})
   }
+
+  createLesson({topic, teacher, group, room, number}){
+    const lesson = new Lesson()
+    lesson.topic = topic
+    lesson.teacher = teacher
+    lesson.group = group
+    lesson.room = room
+    lesson.ordinalNumber = number
+    return lesson.save()
+  }
+  findLesson({topic, group, number}){
+    return Lesson.findOne({'topic': topic, 'group': group, "ordinalNumber": number})
+  }
+
 
 }
 

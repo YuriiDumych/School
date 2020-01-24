@@ -14,7 +14,7 @@ const lesson = new Schema({
     required: true
   },
   room: {
-    type: String,
+    type: Number,
     required: true
   },
   ordinalNumber: {
