@@ -1,7 +1,4 @@
 const DB = require('../db/db')
-
-const path = require('path')
-const conf = require('dotenv').config({ path: path.resolve(__dirname, '../config/.env') }).parsed
 const db = new DB()
 
 class Lesson{
@@ -15,6 +12,24 @@ class Lesson{
       return {status: 201, message: 'Lesson created'}
     }
   }
+  async delete(id){
+    const lesson = await db.findLessonById(id)
+    if(!lesson){
+      return {status: 400, message: 'Lesson does not exist'}
+    }
+    const deletedLess = await db.deleteLesson(id)
+    if(deletedLess){
+      return {status: 200, message: 'Saccessfully deleted'}
+    }
+  }
+
+  async all(group){
+    const lessons = await db.getLessons(group)
+    if(lessons){
+      return lessons
+    }
+  }
+
 }
 
 module.exports = Lesson

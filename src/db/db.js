@@ -32,10 +32,21 @@ class DB{
     lesson.ordinalNumber = number
     return lesson.save()
   }
-  findLesson({topic, group, number}){
-    return Lesson.findOne({'topic': topic, 'group': group, "ordinalNumber": number})
+  findLesson({topic, group, ordinalNumber}){
+    return Lesson.findOne({'topic': topic, 'group': group, "ordinalNumber": ordinalNumber})
   }
 
+  findLessonById(id){
+    return Lesson.findById(id)
+  }
+
+  getLessons(group){
+    return Lesson.find({"group": group})
+  }
+
+  deleteLesson(id){
+    return Lesson.findByIdAndDelete(id)
+  }
 
 }
 

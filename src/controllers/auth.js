@@ -6,8 +6,6 @@ const path = require('path')
 const conf = require('dotenv').config({ path: path.resolve(__dirname, '../config/.env') }).parsed
 const db = new DB()
 
-
-
 class AuthController{
 
   async register({email, password, group}){
