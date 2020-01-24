@@ -30,6 +30,18 @@ class Lesson{
     }
   }
 
+  async edit(id, obj){
+    const lesson = await db.findLessonById(id)
+    console.log('1', lesson)
+    if(!lesson){
+      return {status: 400, message: 'Lesson does not exist'}
+    }
+    const editedLesson = await db.editLesson(id, obj)
+    console.log('2', editedLesson)
+    if(editedLesson){
+      return {status: 200, message: 'Saccessfully edited'}
+    }
+  }
 }
 
 module.exports = Lesson

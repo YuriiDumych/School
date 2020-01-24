@@ -29,5 +29,14 @@ router.delete('/delete', async(req, res) => {
   }
 })
 
+router.put('/edit', async (req, res) => {
+  try{
+    const {id, payload} = req.body
+    const {status, message} = await controller.edit(id, payload)
+    res.status(status).json({message})
+  } catch(e){
+    res.status(500).json({message: 'Something went wrong. Try again.'})
+  }
+})
 
 module.exports = router

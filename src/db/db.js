@@ -37,7 +37,7 @@ class DB{
   }
 
   findLessonById(id){
-    return Lesson.findById(id)
+    return Lesson.findOne({"_id": id})
   }
 
   getLessons(group){
@@ -45,9 +45,12 @@ class DB{
   }
 
   deleteLesson(id){
-    return Lesson.findByIdAndDelete(id)
+    return Lesson.findOneAndDelete({"_id": id})
   }
 
+  editLesson(id, obj){
+    return Lesson.findOneAndUpdate({"_id": id}, obj)
+  }
 }
 
 module.exports = DB
