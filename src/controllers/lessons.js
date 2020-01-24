@@ -3,7 +3,7 @@ const db = new DB()
 
 class Lesson{
   async create({topic, teacher, group, room, number}){
-    const less = await db.findLesson({topic, group, number})
+    const less = await db.findLesson(topic, group, number)
     if(less){
       return {status: 400, message: 'Lesson already exists'}
     } 
@@ -32,12 +32,10 @@ class Lesson{
 
   async edit(id, obj){
     const lesson = await db.findLessonById(id)
-    console.log('1', lesson)
     if(!lesson){
       return {status: 400, message: 'Lesson does not exist'}
     }
     const editedLesson = await db.editLesson(id, obj)
-    console.log('2', editedLesson)
     if(editedLesson){
       return {status: 200, message: 'Saccessfully edited'}
     }

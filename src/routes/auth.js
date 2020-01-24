@@ -3,7 +3,6 @@ const AuthController = require('../controllers/auth')
 const controller = new AuthController()
 
 
-
 router.post('/register', async(req, res) => {
   try{
     const {status, message} = await controller.register(req.body)
