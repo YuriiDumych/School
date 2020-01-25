@@ -12,8 +12,10 @@ class DB{
     }
   }
 
-  saveUser(email, password){
+  saveUser(firstName, lastName, email, password){
     const user = new User()
+    user.firstName = firstName
+    user.lastName = lastName
     user.email = email
     user.password = password
     return user.save()

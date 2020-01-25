@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose')
+const {Schema, model, Types} = require('mongoose')
 
 const lesson = new Schema({
   topic: {
@@ -6,12 +6,12 @@ const lesson = new Schema({
     required: true
   },
   teacher: {
-    type: String,
-    required: true
+    type: Types.ObjectId,
+    ref: 'Teacher'
   },
   group: {
-    type: String,
-    required: true
+    type: Types.ObjectId,
+    ref: 'Group'
   },
   room: {
     type: Number,

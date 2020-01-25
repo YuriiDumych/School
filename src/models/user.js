@@ -1,6 +1,14 @@
-const {Schema, model} = require('mongoose')
+const {Schema, model, Types} = require('mongoose')
 
 const user = new Schema({
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true,
@@ -10,8 +18,8 @@ const user = new Schema({
     required: true
   },
   group: {
-    type: String,
-    required: true
+    type: Types.ObjectId,
+    ref: 'Group'
   }
 })
 
