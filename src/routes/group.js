@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const GroupController = require('../controllers/group')
 const controller = new GroupController()
+const authMiddleware = require('../middlewares/auth.middleware')
 
 
-router.post('/create', async (req, res) => {
+router.post('/create', authMiddleware, async (req, res) => {
   try{
     const {status, message, group} = await controller.createGroup(req.body.name)
     const obj = group ? {message, group} : {message}
@@ -13,7 +14,7 @@ router.post('/create', async (req, res) => {
   }
 })
 
-router.post('/enter', async (req, res) => {
+router.post('/enter', authMiddleware, async (req, res) => {
   try{
     const {status, message} = await controller.addMember(req.body)
     res.status(status).json({message})

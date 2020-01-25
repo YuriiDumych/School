@@ -15,11 +15,8 @@ router.post('/register', async(req, res) => {
 router.post('/login', async(req, res) => {
   try{
     const {status, message, token} = await controller.login(req.body)
-    if(message){
-      res.status(status).json({message})
-    } else {
-      res.status(status).json({token})
-    }
+    const obj = token ? {message, token} : {message}
+      res.status(status).json(obj)
   } catch(e){
     res.status(500).json({message: 'Something went wrong. Try again.'})
   }

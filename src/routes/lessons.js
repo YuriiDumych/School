@@ -14,8 +14,9 @@ router.get('/lessons', authMiddleware, async(req, res) => {
 
 router.post('/create', authMiddleware, async (req, res) => {
   try{
-    const {status, message} = await controller.create(req.body)
-    res.status(status).json(message)
+    const {status, message, lesson} = await controller.create(req.body)
+    const obj = lesson ? {message, lesson} : {message}
+    res.status(status).json(obj)
   } catch(e){
     res.status(500).json({message: 'Something went wrong. Try again.'})
   }
@@ -23,7 +24,7 @@ router.post('/create', authMiddleware, async (req, res) => {
 
 router.delete('/delete', authMiddleware, async(req, res) => {
   try{
-    const {id, group} = req.body
+    const {id, groupId} = req.body
     const {status, message} = await controller.delete(id)
     res.status(status).json({message})
   } catch(e){
@@ -34,8 +35,9 @@ router.delete('/delete', authMiddleware, async(req, res) => {
 router.put('/edit', authMiddleware, async (req, res) => {
   try{
     const {id, payload} = req.body
-    const {status, message} = await controller.edit(id, payload)
-    res.status(status).json({message})
+    const {status, message, lesson} = await controller.edit(id, payload)
+    const obj = lesson ? {message, lesson} : {message}
+    res.status(status).json(obj)
   } catch(e){
     res.status(500).json({message: 'Something went wrong. Try again.'})
   }

@@ -43,25 +43,25 @@ class DB{
     return User.updateOne({"_id": userId}, {$set: {'group': groupId}})
   }
 
-  createLesson({topic, teacher, group, room, number}){
+  createLesson({topic, teacherId, groupId, room, number}){
     const lesson = new Lesson()
     lesson.topic = topic
-    lesson.teacher = teacher
-    lesson.group = group
+    lesson.teacher = teacherId
+    lesson.group = groupId
     lesson.room = room
     lesson.ordinalNumber = number
     return lesson.save()
   }
-  findLesson(topic, group, ordinalNumber){
-    return Lesson.findOne({'topic': topic, 'group': group, "ordinalNumber": ordinalNumber})
+  findLesson(topic, groupId, ordinalNumber){
+    return Lesson.findOne({'topic': topic, 'group': groupId, "ordinalNumber": ordinalNumber})
   }
 
   findLessonById(id){
     return Lesson.findOne({"_id": id})
   }
 
-  getLessons(group){
-    return Lesson.find({"group": group})
+  getLessons(groupId){
+    return Lesson.find({"group": groupId})
   }
 
   deleteLesson(id){
