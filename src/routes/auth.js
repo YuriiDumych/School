@@ -10,7 +10,6 @@ router.post('/register', async(req, res) => {
   } catch(e){
     res.status(500).json({message: 'Something went wrong. Try again.'})
   }
-
 })
 
 router.post('/login', async(req, res) => {

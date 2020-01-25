@@ -15,6 +15,15 @@ class DB{
     }
   }
 
+  findTeacher(firstName, lastName, subject){
+    return Teacher.findOne({firstName, lastName, subject})
+  }
+
+  createTeacher(firstName, lastName, subject){
+    const teacher = new Teacher({firstName, lastName, subject})
+    return teacher.save()
+  }
+
   saveUser(firstName, lastName, email, password){
     const user = new User()
     user.firstName = firstName
