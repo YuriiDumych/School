@@ -1,6 +1,9 @@
 const User = require('../models/user')
 const Lesson = require('../models/lesson')
+const Group  = require('../models/group')
+const Teacher = require('../models/teacher')
 const mongoose = require('mongoose')
+
 
 class DB{
   async connect(uri){
@@ -23,6 +26,12 @@ class DB{
 
   findUser(email){
     return User.findOne({'email': email})
+  }
+  findUserById(id){
+    return User.findOne({"_id": id})
+  }
+  updateUser(userId, groupId){
+    return User.updateOne({"_id": userId}, {$set: {'group': groupId}})
   }
 
   createLesson({topic, teacher, group, room, number}){
@@ -52,6 +61,18 @@ class DB{
 
   editLesson(id, obj){
     return Lesson.findOneAndUpdate({"_id": id}, obj)
+  }
+
+  findGroup(name){
+    return Group.findOne({"name": name})
+  }
+  createGroup(name){
+    const group = new Group()
+    group.name = name
+    return group.save()
+  }
+  addMemberToGroup(groupId, userId){
+    return Group.updateOne({"_id": groupId}, {$addToSet: {students: userId}})
   }
 }
 
