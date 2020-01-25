@@ -12,6 +12,13 @@ class TeacherController{
       return {status: 201, message: 'Teacher created', teacher}
     }
   }
+  async allTeachers(){
+    const teachers = await db.allTeachers()
+    if(!teachers.length){
+      return {status: 400, message: 'There are no theachers'}
+    } 
+    return {status: 200, message: '', teachers}
+  }
 }
 
 module.exports = TeacherController

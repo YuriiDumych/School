@@ -24,6 +24,10 @@ class DB{
     return teacher.save()
   }
 
+  allTeachers(){
+    return Teacher.find({})
+  }
+
   saveUser(firstName, lastName, email, password){
     const user = new User()
     user.firstName = firstName
