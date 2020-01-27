@@ -10,11 +10,9 @@ run "cd src";
 run "node app";
 
 
-to register student - send post request to http://localhost:3000/api/auth/resister with body: {firstName, lastName, email, password}
+to register student - send post request to http://localhost:3000/api/auth/register with body: {firstName, lastName, email, password}
 
 to login student - send post request to http://localhost:3000/api/auth/login with body: { email, password}
-
-to register student - send post request to http://localhost:3000/api/auth/resister with body: {firstName, lastName, email, password}
 
 to create group - send post request to http://localhost:3000/api/group/create with body:{name (group)} and put auth token to 'authorization' in headers
 
